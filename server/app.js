@@ -7,14 +7,12 @@ const customMiddleware = (req,res,next) => {
     next()
 }
 
-app.use(customMiddleware)
-
 app.get('/', (req,res) => {
     console.log('Route Handler')
     res.send('Hello World')
 })
 
-app.get('/about' , (req,res) => {
+app.get('/about' , customMiddleware , (req,res) => {
     console.log('About is executed')
     res.send('About Page')
 })
