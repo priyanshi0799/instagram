@@ -17,15 +17,14 @@ module.exports = (req, res, next) => {
             }
             else{
                 const { _id } = payload
-                User.findOne(_id)
+                User.findById(_id)
                 .then(userdata => {
                     req.user = userdata
+                    next()
                 })
                 .catch(err => {
                     res.send(err)
                 })
-
-                next()
             }
         })
     }
